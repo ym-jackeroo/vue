@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <button id="btn"> 
+      发送请求
+    </button>
+    <button id="btn1">
+      请求另一个网站
+    </button>
+    <button id="btn2">
+      用插件请求另一个网站
+    </button>
+  </body>
+  <script src="/js/axios.js"></script>
+  <script>
+    let btn = document.getElementById('btn')
+    let btn1 = document.getElementById('btn1')
+    let btn2 = document.getElementById('btn2')
+
+    btn.onclick = function() {
+      axios.get('/getMsg').then(res => {
+        console.log(res)
+      })
+    }
+    btn1.onclick = function() {
+      axios.get('/proxy').then(res => {
+        console.log(res)
+      })
+    }
+    btn2.onclick = function() {
+      axios.get('/api/demo2').then(res => {
+        console.log(res)
+      })
+    }
+  </script>
+</html>
+
+  

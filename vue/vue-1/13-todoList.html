@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <h1>ToDoList</h1>
+            <input type="text" placeholder="添加todo" v-model="todo" @keyup.enter="handleAdd">
+        </div>
+        <div>
+            <h1>正在进行</h1>
+            <ul class="no-done">
+                <li v-for="item in arr" v-if="!item.isDone">
+                    <input type="checkbox" v-model="item.isDone">
+                    <strong>{{item.todo}}</strong>
+                    <button @click="handleDelete">删除</button>
+                </li>
+            </ul>
+        </div>
+        <div class="done">
+            <h1>已经进行</h1>
+            <ul>
+                <li v-for="item in arr" v-if="item.isDone">
+                    <input type="checkbox" v-model="item.isDone">
+                    <strong>{{item.todo}}</strong>
+                    <button @click="handleDelete">删除</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script src="./vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            arr:[
+                {
+                    todo:"马冬梅",
+                    isDone:false
+                }
+            ],
+            todo:"",
+            isDone:false
+        },
+        methods:{
+            handleAdd(){
+                if(this.todo){
+                    this.arr.push({
+                        todo:this.todo,
+                        isDone:this.isDone
+                    })
+                    this.todo = ""
+                }
+            },
+            handleDelete(index){
+                this.arr.splice(index,1)
+            }
+        }
+    })
+</script>
+</html>
